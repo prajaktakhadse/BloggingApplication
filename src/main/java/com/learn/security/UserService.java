@@ -1,8 +1,9 @@
 package com.learn.security;
 
 import com.learn.entities.User;
+import com.learn.payload.UserDtos;
 
 public interface UserService {
 
-	User createUser(User user);
+	UserDtos createUser(User user);
 }
