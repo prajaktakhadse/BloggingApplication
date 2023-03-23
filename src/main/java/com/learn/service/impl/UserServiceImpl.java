@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.learn.entities.User;
+import com.learn.exception.ResourceNotFoundException;
 import com.learn.payload.UserDtos;
 import com.learn.repository.UserRepo;
 import com.learn.service.UserService;
@@ -23,10 +24,15 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserDtos updateUser(UserDtos user, Integer userId) {
+	public UserDtos updateUser(UserDtos userDto, Integer userId) {
 		// TODO Auto-generated method stub
-		
-		return null;
+		User user = this.userRepo.findById(userId).orElseThrow(()-> new ResourceNotFoundException("User","userId",userId));
+		user.setName(userDto.getName());
+		user.setEmail(userDto.getEmail());
+		user.setPassword(userDto.getPassword());
+		user.setAbout(userDto.getAbout());
+		User updateUser = this.userRepo.save(user);
+		return this.userToDto(updateUser);
 	}
 
 	@Override
