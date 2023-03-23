@@ -15,9 +15,11 @@ public class UserServiceImpl implements UserService{
 	private UserRepo userRepo;
 
 	@Override
-	public UserDtos createUser(UserDtos user) {
+	public UserDtos createUser(UserDtos userdto) {
 		// TODO Auto-generated method stub
-		return null;
+		User user = this.dtoToUser(userdto);
+		User saveUser = this.userRepo.save(user);
+		return this.userToDto(saveUser);
 	}
 
 	@Override
@@ -56,7 +58,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	
-	private UserDtos DtosToUser(User user) {
+	private UserDtos userToDto(User user) {
 		UserDtos userDtos  = new UserDtos();
 		userDtos.setUserId(user.getUserId());
 		userDtos.setName(user.getName());
