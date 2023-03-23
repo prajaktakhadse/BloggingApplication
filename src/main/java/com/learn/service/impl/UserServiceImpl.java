@@ -55,4 +55,14 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 
+	
+	private UserDtos DtosToUser(User user) {
+		UserDtos userDtos  = new UserDtos();
+		userDtos.setUserId(user.getUserId());
+		userDtos.setName(user.getName());
+		userDtos.setEmail(user.getEmail());
+		userDtos.setPassword(user.getPassword());
+		userDtos.setAbout(user.getAbout());
+		return userDtos;
+	}
 }
