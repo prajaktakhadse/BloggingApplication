@@ -2,6 +2,7 @@ package com.learn.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,20 +40,27 @@ public class CategoryServiceimpl  implements CategoryService{
 
 	@Override
 	public void deleteCategory(Integer categoryId) {
-		// TODO Auto-generated method stub
+		Category cat = this.categoryRepo.findById(categoryId)
+				.orElseThrow(() -> new ResourceNotFoundException("Category ", "category id", categoryId));
+		this.categoryRepo.delete(cat);
 		
 	}
 
 	@Override
 	public CategoryDto getCategory(Integer categoryId) {
-		// TODO Auto-generated method stub
-		return null;
+		Category cat = this.categoryRepo.findById(categoryId)
+				.orElseThrow(() -> new ResourceNotFoundException("Category", "category id", categoryId));
+
+		return this.modelMapper.map(cat, CategoryDto.class);
 	}
 
 	@Override
 	public List<CategoryDto> getCategories() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Category> categories = this.categoryRepo.findAll();
+		List<CategoryDto> catDtos = categories.stream().map((cat) -> this.modelMapper.map(cat, CategoryDto.class))
+				.collect(Collectors.toList());
+
+		return catDtos;
 	}
 
 }
