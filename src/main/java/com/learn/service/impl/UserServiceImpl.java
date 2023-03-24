@@ -1,10 +1,10 @@
 package com.learn.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.learn.entities.User;
 import com.learn.exception.ResourceNotFoundException;
@@ -12,6 +12,7 @@ import com.learn.payload.UserDtos;
 import com.learn.repository.UserRepo;
 import com.learn.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService{
 
 	@Autowired
