@@ -2,6 +2,7 @@ package com.learn.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -46,7 +47,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<UserDtos> getAllUsers() {
 		// TODO Auto-generated method stub
-		return null;
+		List<User>	 findUser = this.userRepo.findAll();
+		List<UserDtos> userDtos = findUser.stream().map(finduser -> this.userToDto(finduser)).collect(Collectors.toList());
+			return userDtos;
 	}
 
 	@Override
