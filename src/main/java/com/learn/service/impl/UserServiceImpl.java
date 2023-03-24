@@ -37,10 +37,10 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserDtos getUser(Integer userId) {
+	public UserDtos getUserById(Integer userId) {
 		// TODO Auto-generated method stub
-	   Optional<User> optional = this.userRepo.findById(userId);
-		return null;
+		User user= this.userRepo.findById(userId).orElseThrow(()-> new ResourceNotFoundException("User","userId",userId));
+		return this.userToDto(user);
 	}
 
 	@Override
