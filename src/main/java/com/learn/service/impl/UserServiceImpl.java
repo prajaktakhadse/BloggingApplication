@@ -1,6 +1,7 @@
 package com.learn.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -38,6 +39,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserDtos getUser(Integer userId) {
 		// TODO Auto-generated method stub
+	   Optional<User> optional = this.userRepo.findById(userId);
 		return null;
 	}
 
