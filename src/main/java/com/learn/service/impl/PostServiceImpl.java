@@ -12,12 +12,12 @@ import com.learn.entities.Post;
 import com.learn.entities.User;
 import com.learn.exception.ResourceNotFoundException;
 import com.learn.payload.PostDto;
-import com.learn.payload.UserDtos;
 import com.learn.repository.CategoryRepo;
 import com.learn.repository.PostRepo;
 import com.learn.repository.UserRepo;
 import com.learn.service.PostService;
 
+@Service
 public class PostServiceImpl implements PostService {
 
 	@Autowired
@@ -98,9 +98,13 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<UserDtos> getPostByUser(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PostDto> getPostByUser(Integer userId) {
+		  User user = this.userRepo.findById(userId).orElseThrow(()->
+		  			  new ResourceNotFoundException("User","userId", userId));
+		  
+		  List<Post> posts = this.postRepo.findByUser(user);
+		  List<PostDto> postDtos = posts.stream().map((post)-> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+		return postDtos;
 	}
 
 	@Override
