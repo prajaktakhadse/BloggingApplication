@@ -1,6 +1,7 @@
 
 package com.learn.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,7 +45,7 @@ public class PostServiceImpl implements PostService {
 		
 		Post post = this.modelMapper.map(postDto, Post.class);
 		post.setImageName("default.png");
-		post.setAddedDate(postDto.getAddedDate());
+		post.setAddedDate(new Date());
 		post.setUser(user);
 		post.setCategory(category);
 		
