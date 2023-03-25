@@ -3,6 +3,7 @@ package com.learn.service;
 import java.util.List;
 
 import com.learn.payload.PostDto;
+import com.learn.payload.PostResponse;
 
 public interface PostService {
 
@@ -12,7 +13,7 @@ public interface PostService {
 		
 	void deletePost(Integer postId);
 	
-	List<PostDto> getAllPost();
+	PostResponse getAllPost(Integer pageNumber,Integer pageSize);
 	
 	//get post by id
 	PostDto getPostById(Integer postId);

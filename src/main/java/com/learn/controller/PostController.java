@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.learn.payload.ApiResponse;
 import com.learn.payload.PostDto;
+import com.learn.payload.PostResponse;
 import com.learn.service.PostService;
 
 @RestController
@@ -55,9 +57,12 @@ public class PostController {
 	}
 	//get all posts
 	@GetMapping("/posts")
-	public  ResponseEntity<List<PostDto>> getAllposts(){
-		List<PostDto> allPost = this.postService.getAllPost();
-		return new ResponseEntity<List<PostDto>>(allPost, HttpStatus.OK);
+	public  ResponseEntity<PostResponse>getAllPost(
+				@RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
+				@RequestParam(value = "pageSize", defaultValue = "5", required = false) Integer pageSize
+				){
+		PostResponse postResponse = this.postService.getAllPost(pageNumber, pageSize);
+		return new ResponseEntity<PostResponse>(postResponse, HttpStatus.OK);
 	}
 	
 	
