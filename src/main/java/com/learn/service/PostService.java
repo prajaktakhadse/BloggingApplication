@@ -3,11 +3,10 @@ package com.learn.service;
 import java.util.List;
 
 import com.learn.payload.PostDto;
-import com.learn.payload.UserDtos;
 
 public interface PostService {
 
-	PostDto createPost(PostDto postDto, Integer userId, Integer categoryId);
+    PostDto createPost(PostDto postDto, Integer userId, Integer categoryId);
 	
 	PostDto updatepost(PostDto postDto, Integer postId);
 		
@@ -26,5 +25,4 @@ public interface PostService {
 	
 	//search posts
 	List<PostDto> searchPosts(String keyword);
-	
 }

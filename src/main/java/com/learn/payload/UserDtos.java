@@ -21,6 +21,7 @@ public class UserDtos {
 	
 	@Email(message = "Email address is not valid !!")
 	@NotEmpty(message = "Email is required !!")
+	@NotNull   
 	private String email;
 	
 
