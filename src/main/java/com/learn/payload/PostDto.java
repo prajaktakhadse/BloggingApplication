@@ -21,4 +21,7 @@ public class PostDto {
 	
 	private Date addedDate;	
 	
+	private CategoryDto category;
+
+	private UserDtos user;
 }
