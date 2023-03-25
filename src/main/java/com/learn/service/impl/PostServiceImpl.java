@@ -1,6 +1,7 @@
 package com.learn.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,7 +91,10 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public List<PostDto> getPostsByCategory(Integer categoryId) {
 		// TODO Auto-generated method stub
-		return null;
+		Category cat = this.categoryRepo.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("Category","categoryId", categoryId));
+		List<Post> posts = this.postRepo.findByCategory(cat);
+		List<PostDto> postDtos = posts.stream().map((post) ->  this.modelMapper.map(posts, PostDto.class)).collect(Collectors.toList());
+		return postDtos;
 	}
 
 	@Override
