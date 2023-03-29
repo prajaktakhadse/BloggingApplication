@@ -30,6 +30,12 @@ import com.learn.security.JWTAuthenticationFilter;
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfiguration{
 
+	 public static final String[] PUBLIC_URLS = {"/api/v1/auth/**", "/v3/api-docs", "/v2/api-docs",
+	            "/swagger-resources/**", "/swagger-ui/**", "/webjars/**"
+
+	    };
+	
+	
     @Autowired
     private CustomUserDetailService customUserDetailService;
     
@@ -46,9 +52,8 @@ public class SecurityConfig extends WebSecurityConfiguration{
 		http.csrf()
 			.disable()
 			.authorizeHttpRequests()
-			.requestMatchers("/api/v1/auth/**")
+			.requestMatchers(PUBLIC_URLS)
 			.permitAll()
-			.requestMatchers("/v3/api-docs").permitAll()
 			.requestMatchers(HttpMethod.GET)
 			.permitAll()
 			.anyRequest()
