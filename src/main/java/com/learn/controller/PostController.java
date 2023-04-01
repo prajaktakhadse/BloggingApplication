@@ -30,7 +30,7 @@ import com.learn.payload.PostResponse;
 import com.learn.service.FileService;
 import com.learn.service.PostService;
 
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api/")

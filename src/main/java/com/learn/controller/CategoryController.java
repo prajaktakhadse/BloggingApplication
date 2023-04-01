@@ -18,7 +18,7 @@ import com.learn.payload.ApiResponse;
 import com.learn.payload.CategoryDto;
 import com.learn.service.CategoryService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/categories")
