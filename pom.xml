@@ -12,7 +12,7 @@
 	<artifactId>BlogApplication</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>BlogApplication</name>
-	<description>Indiviual Project</description>
+	<description>Individual Project</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
