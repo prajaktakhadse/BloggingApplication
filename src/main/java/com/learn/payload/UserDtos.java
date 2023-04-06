@@ -1,6 +1,9 @@
 package com.learn.payload;
 
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -31,4 +34,9 @@ public class UserDtos {
 	
 	@NotEmpty 
 	private String about;
+	
+	private Set<CommentDto> comments= new HashSet<>();
+	
+	
+	private Set<RoleDto> roles=new HashSet<>();
 }
