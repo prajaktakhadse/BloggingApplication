@@ -22,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		//loading user from database by userData
+		//loading user from database by userData...if data found it will authenticate else throw exception
 		User user = this.userRepo.findByEmail(username)
 				.orElseThrow(() -> new ResourceNotFoundException("User","Email :" + username ,0));
 		return user;

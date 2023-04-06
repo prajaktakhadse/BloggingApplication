@@ -35,8 +35,5 @@ public class UserDtos {
 	@NotEmpty 
 	private String about;
 	
-	private Set<CommentDto> comments= new HashSet<>();
-	
-	
-	private Set<RoleDto> roles=new HashSet<>();
+
 }
