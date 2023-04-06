@@ -17,7 +17,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JwtTokenHelper {
 
-	public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
+
+    public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
 
     private String secret = "jwtTokenKey";
@@ -50,7 +51,7 @@ public class JwtTokenHelper {
 
     //generate token for user
     public String generateToken(UserDetails userDetails) {
-        Map<String, Object> claims = new HashMap();
+        Map<String, Object> claims = new HashMap<>();
         return doGenerateToken(claims, userDetails.getUsername());
     }
 
@@ -68,7 +69,6 @@ public class JwtTokenHelper {
 
     //validate token
     public Boolean validateToken(String token, UserDetails userDetails) {
-    	
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
