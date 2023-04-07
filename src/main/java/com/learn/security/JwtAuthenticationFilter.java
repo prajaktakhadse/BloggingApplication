@@ -70,20 +70,25 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 				
 				//once we get the token now validate
 				
-				if(username!=null && SecurityContextHolder.getContext().getAuthentication()==null) {
+				if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
 					//get user details
-					UserDetails userDetail = this.userDetailsService.loadUserByUsername(username);
-					if(this.jwtTokenHelper.validateToken(token, userDetail)) {
-						//all going f9 and need to  build authentication 
-						UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken=new UsernamePasswordAuthenticationToken(userDetail, null,userDetail.getAuthorities());
-						
-						usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+					UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+
+					if (this.jwtTokenHelper.validateToken(token, userDetails)) {
+						// its going on f9 need to build authentication
+
+						UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+								userDetails, null, userDetails.getAuthorities());
+						usernamePasswordAuthenticationToken
+								.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 						SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-					}else {
-						System.out.println("Invalid jwt token  !!");
+
+					} else {
+						System.out.println("Invalid jwt token");
 					}
-					
-				}else {
+
+				} else {
 					System.out.println("username is null or context is not null");
 				}
 				filterChain.doFilter(request, response);

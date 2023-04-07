@@ -21,7 +21,7 @@ import com.learn.security.JwtTokenHelper;
 import com.learn.service.UserService;
 
 @RestController
-@RequestMapping("/api/v1/auth/")
+@RequestMapping("/api/v1/auth")
 public class AuthController {
   
 	
@@ -34,11 +34,11 @@ public class AuthController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private ModelMapper mapper;
+//	@Autowired
+//	private UserService userService;
+//	
+//	@Autowired
+//	private ModelMapper mapper;
 	
 	
 	@PostMapping("/login")
