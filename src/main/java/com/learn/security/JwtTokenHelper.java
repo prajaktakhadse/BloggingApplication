@@ -21,7 +21,7 @@ public class JwtTokenHelper {
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
 
-    private String secret = "jwtTokenKey";
+    private String SECRET = "HoursOfDebuggingCanSaveFewMinutesOfReadingDocumentation";
 
     //retrieve username from jwt token
     public String getUsernameFromToken(String token) {
@@ -40,7 +40,7 @@ public class JwtTokenHelper {
 
     //for retrieveing any information from token we will need the secret key
     private Claims getAllClaimsFromToken(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
     }
 
     //check if the token has expired
@@ -52,6 +52,7 @@ public class JwtTokenHelper {
     //generate token for user
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
+        System.out.println("Method call!");
         return doGenerateToken(claims, userDetails.getUsername());
     }
 
@@ -64,7 +65,7 @@ public class JwtTokenHelper {
 
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
-                .signWith(SignatureAlgorithm.HS512, secret).compact();
+                .signWith(SignatureAlgorithm.HS512, SECRET).compact();
     }
 
     //validate token
