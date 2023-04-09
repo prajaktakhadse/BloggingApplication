@@ -11,14 +11,14 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint{
+public class JwtAuthenticationEntryPoint {
 
-	@Override
-	public void commence(HttpServletRequest request, HttpServletResponse response,
-			AuthenticationException authException) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		//when unauthorized user try to access api
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED,"Access Denied !!");
-	}
+//	@Override
+//	public void commence(HttpServletRequest request, HttpServletResponse response,
+//			AuthenticationException authException) throws IOException, ServletException {
+//		// TODO Auto-generated method stub
+//		//when unauthorized user try to access api
+//		response.sendError(HttpServletResponse.SC_UNAUTHORIZED,"Access Denied !!");
+//	}
 
 }

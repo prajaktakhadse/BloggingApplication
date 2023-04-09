@@ -14,7 +14,10 @@ import com.learn.config.AppConstants;
 import com.learn.entities.Role;
 import com.learn.repository.RoleRepo;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @SpringBootApplication
+@EnableSwagger2
 public class BloggingApplication implements CommandLineRunner{
 
 	@Autowired
@@ -37,26 +40,26 @@ public class BloggingApplication implements CommandLineRunner{
 		// TODO Auto-generated method stub
 				System.out.println(this.passwordEncoder.encode("abcdef"));
 				
-				try {
-					Role role= new Role();
-					role.setRoleId(AppConstants.ADMIN_USER);
-					role.setRoleName("ROLE_ADMIN");
-					
-					Role role1= new Role();
-					role1.setRoleId(AppConstants.NORMAL_USER);
-					role1.setRoleName("ROLE_NORMAL");
-					
-					List<Role> list=List.of(role,role1);
-					
-					List<Role> roles = this.roleRepo.saveAll(list);
-					
-					roles.forEach(r-> {
-						System.out.println(r.getRoleName());
-					});
-				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
-				}
+//				try {
+//					Role role= new Role();
+//					role.setRoleId(AppConstants.ADMIN_USER);
+//					role.setRoleName("ROLE_ADMIN");
+//					
+//					Role role1= new Role();
+//					role1.setRoleId(AppConstants.NORMAL_USER);
+//					role1.setRoleName("ROLE_NORMAL");
+//					
+//					List<Role> list=List.of(role,role1);
+//					
+//					List<Role> roles = this.roleRepo.saveAll(list);
+//					
+//					roles.forEach(r-> {
+//						System.out.println(r.getRoleName());
+//					});
+//				} catch (Exception e) {
+//					// TODO: handle exception
+//					e.printStackTrace();
+//				}
 		
 	}
 }
